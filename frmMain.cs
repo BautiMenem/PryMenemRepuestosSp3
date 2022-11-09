@@ -16,14 +16,16 @@ namespace WindowsFormsApp2
         public float PrecioRepuesto;
         public string MarcaRepuesto;
         public string OrigenRepuesto;
+        
 
         public struct DatosRepuestos
         {
             public string MarcaRepuesto;
             public string OrigenRepuesto;
         }
-        string[] vecRepuestos = new string[3];
-        int indice = 0;
+        public string[] vecRepuestos = new string[3];
+        public int indice = 0;
+        
 
         public frmMain()
         {
@@ -47,18 +49,38 @@ namespace WindowsFormsApp2
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            
+            Repuestos.Text = Convert.ToString(vecRepuestos);
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            MarcaRepuesto = lstMarca.Text;
-            OrigenRepuesto = lstOrigen.Text;
+            
+            //lstMarca.Items.Clear();
+            //for (int indice = 0; indice < vecRepuestos.Length; indice++)
+            //{
+            //  lstMarca.Items.Add(vecRepuestos[indice]);
+            //    MessageBox.Show("Se registró");
+            //}
 
-            while (indice < vecRepuestos.Length)
-            {
-                
-            }
+            //if (indice > vecRepuestos.Length)
+            //{
+            //    MessageBox.Show("Registro lleno");
+            //}
+
+            //while(indice <= vecRepuestos.Length)
+            //{
+            //    vecRepuestos[indice] = lstMarca.Text;
+            //    indice++;
+            //    MessageBox.Show("Registrado");
+            //    lstMarca.Items.Clear();
+
+
+            //    if (indice > vecRepuestos.Length)
+            //    {
+            //        MessageBox.Show("Registro lleno");
+            //    }
+            
+            
         }
     }
 }
