@@ -12,25 +12,21 @@ namespace WindowsFormsApp2
 {
     public partial class frmMain : Form
     {
-        public int NumeroRepuesto;
-        public float PrecioRepuesto;
-        public string MarcaRepuesto;
-        public string OrigenRepuesto;
-        
-
-        public struct DatosRepuestos
+        public struct struRepuestos
         {
-            public string MarcaRepuesto;
-            public string OrigenRepuesto;
+            public string Marca;
+            public string origen;
+            public int Numero;
+            public float Precio;
+            public string Descripcion;
         }
-        public string[] vecRepuestos = new string[3];
-        public int indice = 0;
-        
-
+        struRepuestos[] vec = new struRepuestos[100];
+     
         public frmMain()
         {
             InitializeComponent();
         }
+        int contador = 0;
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -49,38 +45,67 @@ namespace WindowsFormsApp2
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            Repuestos.Text = Convert.ToString(vecRepuestos);
+            rtbRepuestos.Text = "";
+
+            for (int indice = 0; indice < vec.Length; indice++)
+            {
+                if (vec[indice].Marca == lstMarca.Text)
+                {
+                    if (optImportado.Checked)
+                    {
+                        if (vec[indice].origen == "I")
+                        {
+                            rtbRepuestos.Text = rtbRepuestos.Text + "Numero: " + vec[indice].Numero.ToString() + " " + "Precio: " + vec[indice].Precio.ToString() + " " + "Descripcion" + " " + vec[indice].Descripcion.ToString() + "\n";
+
+                        }
+                    }
+                    if (optNacional.Checked)
+                    {
+                        if (vec[indice].origen == "N")
+                        {
+                            rtbRepuestos.Text = rtbRepuestos.Text + "Numero: " + vec[indice].Numero.ToString() + " " + "Precio: " + vec[indice].Precio.ToString() + " " + "Descripcion" + " " + vec[indice].Descripcion.ToString() + "\n";
+
+                        }
+                    }
+                }
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            
-            //lstMarca.Items.Clear();
-            //for (int indice = 0; indice < vecRepuestos.Length; indice++)
-            //{
-            //  lstMarca.Items.Add(vecRepuestos[indice]);
-            //    MessageBox.Show("Se registró");
-            //}
 
-            //if (indice > vecRepuestos.Length)
-            //{
-            //    MessageBox.Show("Registro lleno");
-            //}
+            if (contador < vec.Length)
+            {
+                vec[contador].Marca = lstMarca.Text;
+                vec[contador].origen = lstOrigen.Text;
+                vec[contador].Numero = Convert.ToInt32(txtNumero.Text);
+                vec[contador].Precio = float.Parse(txtPrecio.Text);
+                vec[contador].Descripcion = rtbDescripcion.Text;
 
-            //while(indice <= vecRepuestos.Length)
-            //{
-            //    vecRepuestos[indice] = lstMarca.Text;
-            //    indice++;
-            //    MessageBox.Show("Registrado");
-            //    lstMarca.Items.Clear();
+                contador++;
+                Limpiador();
 
 
-            //    if (indice > vecRepuestos.Length)
-            //    {
-            //        MessageBox.Show("Registro lleno");
-            //    }
-            
-            
+            }
+
+        }
+        public void Limpiador()
+        {
+            lstMarca.SelectedIndex = -1;
+            lstOrigen.SelectedIndex = -1;
+            txtNumero.Text = "";
+            txtPrecio.Text = "";
+            rtbDescripcion.Text = "";
+            lstMarca.Focus();
+        }
+
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true; 
+            }
         }
     }
+    
 }

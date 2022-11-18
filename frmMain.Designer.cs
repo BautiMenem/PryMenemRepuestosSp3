@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.mrcDatos = new System.Windows.Forms.GroupBox();
+            this.lstMarca = new System.Windows.Forms.ComboBox();
             this.lstOrigen = new System.Windows.Forms.ComboBox();
             this.rtbDescripcion = new System.Windows.Forms.RichTextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -39,6 +40,8 @@
             this.lblOrigen = new System.Windows.Forms.Label();
             this.lblMarca = new System.Windows.Forms.Label();
             this.mrcRepuestos = new System.Windows.Forms.GroupBox();
+            this.rtbRepuestos = new System.Windows.Forms.ListBox();
+            this.lstMarca2 = new System.Windows.Forms.ComboBox();
             this.mrcOrigen = new System.Windows.Forms.GroupBox();
             this.optImportado = new System.Windows.Forms.RadioButton();
             this.optNacional = new System.Windows.Forms.RadioButton();
@@ -46,9 +49,6 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
-            this.lstMarca = new System.Windows.Forms.ComboBox();
-            this.lstMarca2 = new System.Windows.Forms.ComboBox();
-            this.Repuestos = new System.Windows.Forms.ListBox();
             this.mrcDatos.SuspendLayout();
             this.mrcRepuestos.SuspendLayout();
             this.mrcOrigen.SuspendLayout();
@@ -72,6 +72,19 @@
             this.mrcDatos.TabIndex = 0;
             this.mrcDatos.TabStop = false;
             this.mrcDatos.Text = "Datos de Repuestos";
+            // 
+            // lstMarca
+            // 
+            this.lstMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lstMarca.FormattingEnabled = true;
+            this.lstMarca.Items.AddRange(new object[] {
+            "P",
+            "F",
+            "R"});
+            this.lstMarca.Location = new System.Drawing.Point(125, 32);
+            this.lstMarca.Name = "lstMarca";
+            this.lstMarca.Size = new System.Drawing.Size(100, 21);
+            this.lstMarca.TabIndex = 11;
             // 
             // lstOrigen
             // 
@@ -110,6 +123,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(100, 20);
             this.txtNumero.TabIndex = 7;
+            this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // txtPrecio
             // 
@@ -156,7 +170,7 @@
             // 
             // mrcRepuestos
             // 
-            this.mrcRepuestos.Controls.Add(this.Repuestos);
+            this.mrcRepuestos.Controls.Add(this.rtbRepuestos);
             this.mrcRepuestos.Controls.Add(this.lstMarca2);
             this.mrcRepuestos.Controls.Add(this.mrcOrigen);
             this.mrcRepuestos.Controls.Add(this.lblMarca2);
@@ -166,6 +180,27 @@
             this.mrcRepuestos.TabIndex = 9;
             this.mrcRepuestos.TabStop = false;
             this.mrcRepuestos.Text = "Repuestos Ingresados";
+            // 
+            // rtbRepuestos
+            // 
+            this.rtbRepuestos.FormattingEnabled = true;
+            this.rtbRepuestos.Location = new System.Drawing.Point(345, 32);
+            this.rtbRepuestos.Name = "rtbRepuestos";
+            this.rtbRepuestos.Size = new System.Drawing.Size(207, 186);
+            this.rtbRepuestos.TabIndex = 13;
+            // 
+            // lstMarca2
+            // 
+            this.lstMarca2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lstMarca2.FormattingEnabled = true;
+            this.lstMarca2.Items.AddRange(new object[] {
+            "P",
+            "F",
+            "R"});
+            this.lstMarca2.Location = new System.Drawing.Point(125, 32);
+            this.lstMarca2.Name = "lstMarca2";
+            this.lstMarca2.Size = new System.Drawing.Size(100, 21);
+            this.lstMarca2.TabIndex = 12;
             // 
             // mrcOrigen
             // 
@@ -239,40 +274,6 @@
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
-            // lstMarca
-            // 
-            this.lstMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.lstMarca.FormattingEnabled = true;
-            this.lstMarca.Items.AddRange(new object[] {
-            "P",
-            "F",
-            "R"});
-            this.lstMarca.Location = new System.Drawing.Point(125, 32);
-            this.lstMarca.Name = "lstMarca";
-            this.lstMarca.Size = new System.Drawing.Size(100, 21);
-            this.lstMarca.TabIndex = 11;
-            // 
-            // lstMarca2
-            // 
-            this.lstMarca2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.lstMarca2.FormattingEnabled = true;
-            this.lstMarca2.Items.AddRange(new object[] {
-            "P",
-            "F",
-            "R"});
-            this.lstMarca2.Location = new System.Drawing.Point(125, 32);
-            this.lstMarca2.Name = "lstMarca2";
-            this.lstMarca2.Size = new System.Drawing.Size(100, 21);
-            this.lstMarca2.TabIndex = 12;
-            // 
-            // Repuestos
-            // 
-            this.Repuestos.FormattingEnabled = true;
-            this.Repuestos.Location = new System.Drawing.Point(345, 32);
-            this.Repuestos.Name = "Repuestos";
-            this.Repuestos.Size = new System.Drawing.Size(207, 186);
-            this.Repuestos.TabIndex = 13;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,7 +321,7 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.ComboBox lstMarca;
-        private System.Windows.Forms.ListBox Repuestos;
+        private System.Windows.Forms.ListBox rtbRepuestos;
         private System.Windows.Forms.ComboBox lstMarca2;
     }
 }
